@@ -3,16 +3,22 @@ const Body = () => {
         <div className='body'>
             <div className='grid-container'>
                 <div className='grid-item'>
-                    <u>How does it work?</u> 
-                    <div className='grid-item-info'>Step 1</div>
-                    <div className='divider'></div>
-                    <div className='grid-item-info'>Step 2</div>
-                    <div className='divider'></div>
-                    <div className='grid-item-info'>Step 3</div>
-                    <div className='divider'></div>
-                    <div className='grid-item-info'>Step 4</div>
-                    <div className='divider'></div>
-                    <div className='grid-item-info'>Step 5</div>
+                    <u>How does it work?</u>
+                    <div className='grid-item-info'>
+                        At varius vel pharetra vel turpis nunc eget lorem dolor.
+                        <br></br>
+                        <br></br>
+                        Mattis molestie a iaculis at erat pellentesque adipiscing commodo elit.
+                        <br></br>
+                        <br></br>
+                        Mi tempus imperdiet nulla malesuada.
+                        <br></br>
+                        <br></br>
+                        Ut porttitor leo a diam sollicitudin tempor id eu nisl.
+                        <br></br>
+                        <br></br>
+                        Nulla pharetra diam sit amet nisl suscipit adipiscing.
+                    </div>
                 </div>
                 <div className='grid-item'>
                     <u>Frequently Asked Questions</u>

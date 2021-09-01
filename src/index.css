@@ -77,12 +77,10 @@ li.dropdown {
 }
 
 .grid-container {
-  
   height: 100%;
   display: grid;
   grid-template-columns: auto auto;
   gap: 5px 50px;
-  padding: 10px;
 }
 
 .grid-item {
@@ -93,11 +91,12 @@ li.dropdown {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 30px;
   font-weight: bold;
+  padding: 20px;
 }
 
 .grid-item-info {
-  
   text-align: left;
+  margin-top: 20px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   font-weight: normal;
@@ -111,6 +110,7 @@ li.dropdown {
   border: 1px black;
   margin: 4px 4px;
   text-align: left;
+  margin-top: 20px;
   color: white;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
