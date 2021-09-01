@@ -16,7 +16,7 @@ export const TopNav = () => {
                 <li className='dropdown'>
                     <a href='javascript:void(0)' className='dropbtn'>Popular Items</a> 
                     <div className='dropdown-content'>
-                        <a href='#' >X-Box Series X</a>
+                        <a href='#' >Xbox Series X</a>
                         <a href='#' >PS5</a>
                         <a href='#' >GPU's</a>
                     </div>
