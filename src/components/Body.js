@@ -1,36 +1,20 @@
-const Body = () => {
+import Home from './Bodies/Home'
+import BestBuy from './Bodies/BestBuy'
+import Amazon from './Bodies/Amazon'
+import Walmart from './Bodies/Walmart'
+import HowTo from './Bodies/HowTo'
+import AboutUs from './Bodies/AboutUs'
+
+const Body = ( {bStock, bBB, bAma, bWal, bHow, bAbout}) => {
+
     return (
         <div className='body'>
-            <div className='grid-container'>
-                <div className='grid-item'>
-                    <u>How does it work?</u>
-                    <div className='grid-item-info'>
-                        At varius vel pharetra vel turpis nunc eget lorem dolor.
-                        <br></br>
-                        <br></br>
-                        Mattis molestie a iaculis at erat pellentesque adipiscing commodo elit.
-                        <br></br>
-                        <br></br>
-                        Mi tempus imperdiet nulla malesuada.
-                        <br></br>
-                        <br></br>
-                        Ut porttitor leo a diam sollicitudin tempor id eu nisl.
-                        <br></br>
-                        <br></br>
-                        Nulla pharetra diam sit amet nisl suscipit adipiscing.
-                    </div>
-                </div>
-                <div className='grid-item'>
-                    <u>Frequently Asked Questions</u>
-                    <div>
-                        <button className='faq-button'>Why?</button>
-                        <button className='faq-button'>Who?</button>
-                        <button className='faq-button'>How?</button>
-                        <button className='faq-button'>Where?</button>
-                        <button className='faq-button'>When?</button>
-                    </div>
-                </div>
-            </div>
+            {bStock && <Home   />}
+            {bBB && <BestBuy   />}
+            {bAma && <Amazon   />}
+            {bWal && <Walmart  />}
+            {bHow && <HowTo    />}
+            {bAbout && <AboutUs   />}
         </div>
     )
 }
