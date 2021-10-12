@@ -7,40 +7,23 @@ import api from './api.js'
 
 function App() {
     //Stock Body
-    const [bodyStock, setBodyStock] = useState(
-    true //Set to true when using real website
-    )
-    
+    const [bodyStock, setBodyStock] = useState(true) //Set to true when using real website
     //Best Buy Form
-    const [bodyBB, setBodyBB] = useState(
-    false
-    )
-    
+    const [bodyBB, setBodyBB] = useState(false)
     //Amazon Form
-    const [bodyAmazon, setBodyAmazon] = useState(
-    false
-    )
-    
+    const [bodyAmazon, setBodyAmazon] = useState(false)
     //Walmart Form
-    const [bodyWalmart, setBodyWalmart] = useState(
-    false
-    )
-
+    const [bodyWalmart, setBodyWalmart] = useState(false)
     //How To Body
-    const [bodyHow, setBodyHow] = useState(
-    false  //set to false when using real website
-    )
-
+    const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
     //About Us Body
-    const [bodyAbout, setBodyAbout] = useState(
-    false
-    )
+    const [bodyAbout, setBodyAbout] = useState(false)
 
-
-
-    // Create state variables
+    // Create state variable to hold response data
     let [responseData, setResponseData] = useState(false)
-    // fetches data
+
+    //TODO: Fix setReponseData
+    // Define function that calls a function on our imported obj containing Axios call
     const fetchData = (e) => {
         e.preventDefault()
         api.getData()
@@ -55,27 +38,28 @@ function App() {
 
     return (
     <div className='container'>
-      <Header />
+        <Header/>
 
-      <TopNav 
-        homeClick={() => setBodyStock(!bodyStock)} 
-        bbClick={() => setBodyBB(!bodyBB)} 
-        amazonClick={() => setBodyAmazon(!bodyAmazon)} 
-        walmartClick={() => setBodyWalmart(!bodyWalmart)} 
-        howClick={() => setBodyHow (!bodyHow)} 
-        aboutClick={() => setBodyAbout(!bodyAbout)} 
-      />
+        <TopNav
+            homeClick={()       => setBodyStock(!bodyStock)     }
+            bbClick={()         => setBodyBB(!bodyBB)           }
+            amazonClick={()     => setBodyAmazon(!bodyAmazon)   }
+            walmartClick={()    => setBodyWalmart(!bodyWalmart) }
+            howClick={()        => setBodyHow (!bodyHow)        }
+            aboutClick={()      => setBodyAbout(!bodyAbout)     }
+        />
 
-      <div className='divider'></div>
+        <Body
+            bStock={   bodyStock   }
+            bBB={      bodyBB      }
+            bAma={     bodyAmazon  }
+            bWal={     bodyWalmart }
+            bHow={     bodyHow     }
+            bAbout={   bodyAbout   }
+        />
 
-      <Body 
-      bStock={bodyStock} 
-      bBB={bodyBB}  
-      bAma={bodyAmazon}  
-      bWal={bodyWalmart}  
-      bHow={bodyHow}  
-      bAbout={bodyAbout}  
-      />
+        {/*Displays data using JSX and
+        dot-notation to access data in the response object */}
         <div>
             <h1>{responseData}</h1>
             <button onClick={(e) => fetchData(e)} type='button'>Click Me For Data</button>
