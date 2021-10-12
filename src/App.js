@@ -1,8 +1,9 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import Header from './components/Header'
 import TopNav from './components/TopNav'
 import Footer from './components/Footer'
 import Body from './components/Body'
+import api from './api.js'
 
 function App() {
     //Stock Body
@@ -35,7 +36,24 @@ function App() {
     false
     )
 
-  return (
+
+
+    // Create state variables
+    let [responseData, setResponseData] = useState(false)
+    // fetches data
+    const fetchData = (e) => {
+        e.preventDefault()
+        api.getData()
+            .then((response) => {
+                //setResponseData(response.data)
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    return (
     <div className='container'>
       <Header />
 
@@ -58,6 +76,13 @@ function App() {
       bHow={bodyHow}  
       bAbout={bodyAbout}  
       />
+        <div>
+            <h1>{responseData}</h1>
+            <button onClick={(e) => fetchData(e)} type='button'>Click Me For Data</button>
+            {responseData && responseData.results.map(result => {
+                return <p>{ result }</p>
+            })}
+        </div>
 
       <Footer />
     </div>
