@@ -19,21 +19,33 @@ function App() {
     //About Us Body
     const [bodyAbout, setBodyAbout] = useState(false)
 
+
     // Create state variable to hold response data
     let [responseData, setResponseData] = useState(false)
 
     //TODO: Fix setReponseData
     // Define function that calls a function on our imported obj containing Axios call
-    const fetchData = (e) => {
-        e.preventDefault()
-        api.getData()
-            .then((response) => {
-                //setResponseData(response.data)
-                console.log(response)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    let arr = [];
+    const fetchData = async (e) => {
+        try
+        {
+            e.preventDefault()
+            await api.getData()
+                .then(response => {
+                    let jsonRes = JSON.stringify(response.data.description); // Convert Listing Obj to JSON String
+                    setResponseData(jsonRes)
+                    console.log(typeof jsonRes)
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+        catch (err)
+        {
+           console.error(err);
+        }
+
     }
 
     return (
@@ -58,15 +70,24 @@ function App() {
             bAbout={   bodyAbout   }
         />
 
-        {/*Displays data using JSX and
-        dot-notation to access data in the response object */}
-        <div>
-            <h1>{responseData}</h1>
-            <button onClick={(e) => fetchData(e)} type='button'>Click Me For Data</button>
-            {responseData && responseData.results.map(result => {
+        {/*
+        Displays data using JSX and
+        dot-notation to access data in the response object
+        */}
+        {/*{ responseData && responseData.results.map(result => {
                 return <p>{ result }</p>
-            })}
+            })}*/}
+        <div>
+            <ul>{ responseData }</ul>
+            <button onClick={(e) => fetchData(e)} type='button'>
+                Amazon API Data
+            </button>
+            { }
+
+
+
         </div>
+
 
       <Footer />
     </div>
