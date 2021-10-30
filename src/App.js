@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import React, {useEffect, useState} from "react"
 import Header from './components/Header'
 import TopNav from './components/TopNav'
 import Footer from './components/Footer'
 import Body from './components/Body'
 import api from './api.js'
+import Amazon from "./components/Bodies/Amazon";
 
 function App() {
     //Stock Body
@@ -20,38 +21,69 @@ function App() {
     const [bodyAbout, setBodyAbout] = useState(false)
 
 
-    // Create state variable to hold response data
-    let [responseData, setResponseData] = useState(false)
+    // Create state variable to hold API response data
+    const [repo, setRepo] = useState([])
 
-    //TODO: Fix setReponseData
-    // Define function that calls a function on our imported obj containing Axios call
-    let arr = [];
-    const fetchData = async (e) => {
+    // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
+
+    const getRepo = async () => {
+        try {
+            api.getData()
+                .then((response) => {
+                    console.log(response.data.results);
+                    const myRepo = response.data.results;
+
+                    var isArr = myRepo instanceof Array;
+                    isArr = Object.prototype.toString.call(myRepo) === '[object Array]';
+                    console.log(isArr);
+
+                    setRepo(myRepo);
+                })
+        }
+        catch (err){
+            //console.error(err);
+        }
+    }
+    useEffect(() => getRepo(), []);
+
+/*
+    useEffect(() => {
+        const getRepo =  async () =>  {
+            try {
+                const response = await api.getData();
+                console.log(response);
+                const myRepo = response.data;
+                setRepo(myRepo);
+            } catch(error) {
+                console.log(error);
+            }
+        };
+        getRepo();
+    }, []);
+
+ */
+    /*
+    const getRepo = async (e) => {
         try
         {
             e.preventDefault()
             await api.getData()
-                .then(response => {
-                    let jsonRes = JSON.stringify(response.data.description); // Convert Listing Obj to JSON String
-                    setResponseData(jsonRes)
-                    console.log(typeof jsonRes)
-                    console.log(response.data)
+                .then(response =>
+                {
+                    let jsonRes = JSON.stringify(response.data); // Convert Listing Obj to JSON String
+                    setRepo(jsonRes)
                 })
-                .catch((error) => {
-                    console.log(error)
-                })
+                .catch((error) => { console.log(error)} )
         }
-        catch (err)
-        {
-           console.error(err);
-        }
-
+        catch (err){ console.error(err); }
     }
+
+     */
+
 
     return (
     <div className='container'>
         <Header/>
-
         <TopNav
             homeClick={()       => setBodyStock(!bodyStock)     }
             bbClick={()         => setBodyBB(!bodyBB)           }
@@ -60,7 +92,6 @@ function App() {
             howClick={()        => setBodyHow (!bodyHow)        }
             aboutClick={()      => setBodyAbout(!bodyAbout)     }
         />
-
         <Body
             bStock={   bodyStock   }
             bBB={      bodyBB      }
@@ -69,27 +100,30 @@ function App() {
             bHow={     bodyHow     }
             bAbout={   bodyAbout   }
         />
-
         {/*
         Displays data using JSX and
         dot-notation to access data in the response object
-        */}
-        {/*{ responseData && responseData.results.map(result => {
-                return <p>{ result }</p>
-            })}*/}
+
         <div>
-            <ul>{ responseData }</ul>
-            <button onClick={(e) => fetchData(e)} type='button'>
-                Amazon API Data
-            </button>
+            <button onClick={(e) => getRepo(e)} type='button'> Amazon API Data</button>
+            <p>{ repo }</p>
             { }
-
-
-
         </div>
+         <Amazon key={repos.results}>
+                        <p >{repos.seller.name}</p>
+                        <p>{repos.current_price}</p>
+                        <p>{repos.seller.condition}</p>
+                    </Amazon>
 
 
-      <Footer />
+
+        */}
+        <ol>
+            {repo.map(rep => (
+                <li></li>
+            ))}
+        </ol>
+      <Footer/>
     </div>
   );
 }
