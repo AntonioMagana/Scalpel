@@ -3,9 +3,15 @@ import Header from './components/Header'
 import TopNav from './components/TopNav'
 import Footer from './components/Footer'
 import Body from './components/Body'
-import api from './api.js'
-import Amazon from "./components/Bodies/Amazon";
+import Table from './components/Table';
+import { getData } from './api.js'
 
+// {
+//     name
+//     instock
+//     price
+
+// }
 function App() {
     //Stock Body
     const [bodyStock, setBodyStock] = useState(true) //Set to true when using real website
@@ -28,58 +34,14 @@ function App() {
 
     const getRepo = async () => {
         try {
-            api.getData()
-                .then((response) => {
-                    console.log(response.data.results);
-                    const myRepo = response.data.results;
-
-                    var isArr = myRepo instanceof Array;
-                    isArr = Object.prototype.toString.call(myRepo) === '[object Array]';
-                    console.log(isArr);
-
-                    setRepo(myRepo);
-                })
+            const results = await getData();
+            setRepo(results);
         }
         catch (err){
-            //console.error(err);
+            console.error(err);
         }
     }
     useEffect(() => getRepo(), []);
-
-/*
-    useEffect(() => {
-        const getRepo =  async () =>  {
-            try {
-                const response = await api.getData();
-                console.log(response);
-                const myRepo = response.data;
-                setRepo(myRepo);
-            } catch(error) {
-                console.log(error);
-            }
-        };
-        getRepo();
-    }, []);
-
- */
-    /*
-    const getRepo = async (e) => {
-        try
-        {
-            e.preventDefault()
-            await api.getData()
-                .then(response =>
-                {
-                    let jsonRes = JSON.stringify(response.data); // Convert Listing Obj to JSON String
-                    setRepo(jsonRes)
-                })
-                .catch((error) => { console.log(error)} )
-        }
-        catch (err){ console.error(err); }
-    }
-
-     */
-
 
     return (
     <div className='container'>
@@ -100,29 +62,13 @@ function App() {
             bHow={     bodyHow     }
             bAbout={   bodyAbout   }
         />
-        {/*
-        Displays data using JSX and
-        dot-notation to access data in the response object
+        { Table(repo) }
 
-        <div>
-            <button onClick={(e) => getRepo(e)} type='button'> Amazon API Data</button>
-            <p>{ repo }</p>
-            { }
-        </div>
-         <Amazon key={repos.results}>
-                        <p >{repos.seller.name}</p>
-                        <p>{repos.current_price}</p>
-                        <p>{repos.seller.condition}</p>
-                    </Amazon>
-
-
-
-        */}
-        <ol>
+        {/* <ol>
             {repo.map(rep => (
-                <li></li>
+                <li>{rep.comment}</li>
             ))}
-        </ol>
+        </ol> */}
       <Footer/>
     </div>
   );

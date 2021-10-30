@@ -8,9 +8,9 @@ import axios from 'axios'
  * HTTP Method, URL, headers, query parameters (params)
  * **/
 require('dotenv').config();
-export default {
-    getData: () =>
-    axios({
+
+export async function getData() {
+    const results = await axios({
         'method':'GET',
         'url':process.env.REACT_APP_URL,
         'headers':
@@ -24,5 +24,6 @@ export default {
             asin: "B07VGRJDFY",
             page: '1'
         },
-    })
+    });
+    return results.data.results;
 }
