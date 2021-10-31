@@ -5,13 +5,11 @@ import Footer from './components/Footer'
 import Body from './components/Body'
 import Table from './components/Table';
 import { getData } from './api.js'
+import Chart from "./components/Chart";
+import {Grid, Paper} from "@mui/material";
+import {createTheme} from "@mui/material/styles";
+import {ThemeProvider} from "@emotion/react";
 
-// {
-//     name
-//     instock
-//     price
-
-// }
 function App() {
     //Stock Body
     const [bodyStock, setBodyStock] = useState(true) //Set to true when using real website
@@ -32,6 +30,7 @@ function App() {
 
     // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
 
+
     const getRepo = async () => {
         try {
             const results = await getData();
@@ -43,34 +42,33 @@ function App() {
     }
     useEffect(() => getRepo(), []);
 
-    return (
-    <div className='container'>
-        <Header/>
-        <TopNav
-            homeClick={()       => setBodyStock(!bodyStock)     }
-            bbClick={()         => setBodyBB(!bodyBB)           }
-            amazonClick={()     => setBodyAmazon(!bodyAmazon)   }
-            walmartClick={()    => setBodyWalmart(!bodyWalmart) }
-            howClick={()        => setBodyHow (!bodyHow)        }
-            aboutClick={()      => setBodyAbout(!bodyAbout)     }
-        />
-        <Body
-            bStock={   bodyStock   }
-            bBB={      bodyBB      }
-            bAma={     bodyAmazon  }
-            bWal={     bodyWalmart }
-            bHow={     bodyHow     }
-            bAbout={   bodyAbout   }
-        />
-        { Table(repo) }
+    const mdTheme = createTheme();
 
-        {/* <ol>
-            {repo.map(rep => (
-                <li>{rep.comment}</li>
-            ))}
-        </ol> */}
-      <Footer/>
-    </div>
+    return (
+        <ThemeProvider theme={mdTheme}>
+            <div className='container'>
+                <Header/>
+                <TopNav
+                    homeClick={()       => setBodyStock(!bodyStock)     }
+                    bbClick={()         => setBodyBB(!bodyBB)           }
+                    amazonClick={()     => setBodyAmazon(!bodyAmazon)   }
+                    walmartClick={()    => setBodyWalmart(!bodyWalmart) }
+                    howClick={()        => setBodyHow (!bodyHow)        }
+                    aboutClick={()      => setBodyAbout(!bodyAbout)     }
+                />
+                <Body
+                    bStock={   bodyStock   }
+                    bBB={      bodyBB      }
+                    bAma={     bodyAmazon  }
+                    bWal={     bodyWalmart }
+                    bHow={     bodyHow     }
+                    bAbout={   bodyAbout   }
+                />
+                { Table(repo) }
+                <Footer/>
+            </div>
+        </ThemeProvider>
+
   );
 }
 

@@ -27,3 +27,4 @@ export async function getData() {
     });
     return results.data.results;
 }
+export default getData;

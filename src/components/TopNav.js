@@ -1,6 +1,6 @@
 export const TopNav = ( {homeClick, bbClick, amazonClick, walmartClick, howClick, aboutClick} ) => {
     return (
-        <div class='topnav'>  
+        <div className='topnav'>
             <button className='navbtn' onClick={homeClick}>     Home</button>
             <button className='navbtn' onClick={bbClick}>       Best Buy</button>
             <button className='navbtn' onClick={amazonClick}>   Amazon</button>
