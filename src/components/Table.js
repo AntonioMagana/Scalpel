@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {blue} from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Chart from "./Chart";
+import Deposits from "./Deposits";
 
 const Table = (Id) => {
     console.log(Id[0],'hi21')
@@ -41,6 +42,7 @@ const Table = (Id) => {
 
           {/*CHART*/}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+              <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
@@ -53,6 +55,21 @@ const Table = (Id) => {
                   <Chart />
                 </Paper>
              </Grid>
+
+              {/* Recent Deposits */}
+              <Grid item xs={12} md={4} lg={3}>
+                  <Paper
+                      sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          height: 200,
+                      }}
+                  >
+                      <Deposits />
+                  </Paper>
+              </Grid>
+              </Grid>
           </Container>
 
           {/*TABLE*/}
