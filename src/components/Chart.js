@@ -10,15 +10,15 @@ function createData(time, amount) {
 }
 
 const data = [
-    createData('00:00', 200),
-    createData('03:00', 215),
-    createData('06:00', 225),
-    createData('09:00', 250),
-    createData('12:00', 275),
-    createData('15:00', 300),
-    createData('18:00', 325),
-    createData('21:00', 350),
-    createData('24:00', undefined),
+    createData('10/23', 200),
+    createData('10/24', 215),
+    createData('10/25', 225),
+    createData('10/26', 250),
+    createData('10/27', 275),
+    createData('10/28', 300),
+    createData('10/29', 325),
+    createData('10/30', 350),
+    createData('10/31', undefined),
 ];
 
 export default function Chart() {
