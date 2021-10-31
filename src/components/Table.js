@@ -3,11 +3,9 @@ import {TableHead, TableCell, TableRow, TableBody, TableContainer, Paper, Grid, 
 import TableMUI from '@mui/material/Table'
 import '../styles/index.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {blue, purple} from '@mui/material/colors';
+import {blue} from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Chart from "./Chart";
-
-
 
 const Table = (Id) => {
     console.log(Id[0],'hi21')
@@ -33,13 +31,15 @@ const Table = (Id) => {
         },
     });
 
-
   return (
       <div>
+          {/*PRODUCT NAME AND STATUS*/}
           <ThemeProvider theme={theme}>
               <Button>Nintendo Switch</Button>
               <Button color="secondary">In-Stock</Button>
           </ThemeProvider>
+
+          {/*CHART*/}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid item xs={12} md={8} lg={9}>
                 <Paper
@@ -55,7 +55,7 @@ const Table = (Id) => {
              </Grid>
           </Container>
 
-
+          {/*TABLE*/}
           <TableContainer component={Paper}>
               <TableMUI sx={{ minWidth: 200 }} aria-label="simple table">
                   <TableHead>
@@ -83,20 +83,4 @@ const Table = (Id) => {
 
   );
 }
-/*
-   <div>
-     <TableMUI class=''>
-       <TableHead class='borders blue'>
-         <TableCell> <h1> Hi </h1> </TableCell>
-       </TableHead>
-<TableRow>
- <TableCell> <h1> Hi </h1> </TableCell>
- <TableCell> <h1> Hi </h1> </TableCell>
- <TableCell> <h1> Hi </h1> </TableCell>
-</TableRow>
-
-
-     </TableMUI>
-   </div>
-   */
 export default Table

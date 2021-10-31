@@ -23,13 +23,9 @@ function App() {
     const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
     //About Us Body
     const [bodyAbout, setBodyAbout] = useState(false)
-
-
     // Create state variable to hold API response data
     const [repo, setRepo] = useState([])
-
     // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
-
 
     const getRepo = async () => {
         try {
