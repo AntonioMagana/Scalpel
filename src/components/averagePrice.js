@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Title from './Title';
+import Title from './title';
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider} from "@emotion/react";
 import Box from "@mui/material/Box";
@@ -22,16 +22,14 @@ const theme = createTheme({
         action: {
             active: '#001E3C',
         },
-
     },
 });
 
 export default function AveragePrice() {
     return (
-
         <React.Fragment>
             <ThemeProvider theme={theme}>
-                <Title>Average Costs</Title>
+                <Title>Average Price</Title>
                 <Typography component="p" variant="h4">$289.03</Typography>
                 <Typography
                     color="text.secondary" sx={{ color:'#009688', flex: 1, display: 'inline', fontWeight:'medium' }}>
@@ -41,9 +39,7 @@ export default function AveragePrice() {
                         vs. last week
                     </Typography>
                 </Typography>
-                <div>
-                    <Link color="primary" href="#" onClick={preventDefault}>Product Link</Link>
-                </div>
+                <Link color="primary" href="#" onClick={preventDefault}>Add to Cart</Link>
             </ThemeProvider>
         </React.Fragment>
     );

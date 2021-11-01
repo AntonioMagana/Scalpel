@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from "react"
-import api from '../../api.js'
-import App from "../../App";
-
+import React from "react"
 
 const Amazon = async () => {
+    console.log("Amazon button clicked");
     return (
         <div>
             <div>Amazon Form</div>
