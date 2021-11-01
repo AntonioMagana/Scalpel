@@ -1,26 +1,8 @@
 import axios from 'axios'
-/**
- * Holds the Axios call.
- * This file creates an object that we import as 'api' in 'index.js'.
- * Used by a function called 'getData' on the obj
- *
- * Axios call takes config object as the argument which needs:
- * HTTP Method, URL, headers, query parameters (params)
- * **/
+
 require('dotenv').config();
 
-/**
- * ASIN TABLE
- * -----------
- * B07VGRJDFY = Nintendo Switch (Red/Blue)
- * B097MYTZMW = MSI Gaming GeForce RTX 3070 LHR 8GB GDRR6
- * B08V1ZWGVR = ZOTAC Gaming GeForce RTX 3080 Ti AMP Holo 12GB GDDR6X
- * B08HR6ZBYJ = NVIDIA GeForce RTX 3090 Founders Edition Graphics Card
- * B08H75RTZ8 = Xbox Series X Console
- * B08FC5L3RG = PlayStation 5 Console
- * **/
-// All-in-one api calls for ITEM LISTINGS into one function, returns json object
-// NOTE: THE API LIMIT CALLS IS 25,000/MONTH
+// Returns a list of available offers for the specified product (New, Used etc.)
 export function getListing(item) {
     let data = null;
     switch (item) {
@@ -51,7 +33,7 @@ export function getListing(item) {
 async function getNintendoSwitchData() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,
@@ -70,7 +52,7 @@ async function getNintendoSwitchData() {
 async function getRTX3070Data() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,
@@ -89,7 +71,7 @@ async function getRTX3070Data() {
 async function getRTX3080Data() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,
@@ -108,7 +90,7 @@ async function getRTX3080Data() {
 async function getRTX3090Data() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,
@@ -127,7 +109,7 @@ async function getRTX3090Data() {
 async function getXboxSeriesXData() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,
@@ -146,7 +128,7 @@ async function getXboxSeriesXData() {
 async function getPlayStationData() {
     const results = await axios({
         'method':'GET',
-        'url':process.env.REACT_APP_URL,
+        'url':process.env.REACT_APP_LISTING_URL,
         'headers':
             {
                 'x-rapidapi-host':process.env.REACT_APP_HOST,

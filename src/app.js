@@ -3,10 +3,12 @@ import Header from './components/header'
 import TopNav from './components/topNav'
 import Footer from './components/footer'
 import Body from './components/body'
-import Table from './components/table';
-import { getListing } from './api.js'
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
+import { getListing } from './api.listing.js'
+import { getProductDetails } from "./api.search.js";
+import Table from './components/table';
+import AmazonTable from './components/amazonTable';
 
 function App() {
     // Create states for e-commerce stores
@@ -18,15 +20,25 @@ function App() {
     const [bodyAbout, setBodyAbout] = useState(false)
     const [repo, setRepo] = useState([]) // holds API response data
 
-    // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
-    const getRepo = async () => {
+    /* returns the list of available offers for the specified product (New, Used, etc…). */
+    const amazonListing = async () => {
         try {
             const results = await getListing('nintendo_switch');
             setRepo(results);
         }
         catch (err) { console.error(err); }
     }
-    useEffect(() => getRepo(), []);
+    useEffect(() => amazonListing(), []);
+
+    /* returns the Product informations for the specified Marketplace and ASIN. */
+    const amazonProductDetails = async () => {
+        try {
+            const results = await getProductDetails('B07VGRJDFY'); // Nintendo Switch ASIN
+            setRepo(results);
+        }
+        catch (err) { console.error(err); }
+    }
+    //useEffect(() => amazonProductDetails(), []);
 
     const mdTheme = createTheme(); // materialUI theme
     return (
@@ -52,8 +64,11 @@ function App() {
                     bHow={     bodyHow     }
                     bAbout={   bodyAbout   }
                 />
-                {/* TABLE with Amazon API data */}
-                { Table(repo) }
+                {/* TABLE with Amazon API data
+                 { Table(repo) }
+                */}
+                {/*TODO: TEST AMAZON TABLE*/}
+                { AmazonTable(repo) }
                 {/* FOOTER has Scalpel label in bottom webpage */}
                 <Footer />
             </ThemeProvider>

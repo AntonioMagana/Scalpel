@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Title from './title';
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider} from "@emotion/react";
-import Box from "@mui/material/Box";
 
 function preventDefault(event) {
     event.preventDefault();
