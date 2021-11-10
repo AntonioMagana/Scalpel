@@ -4,6 +4,8 @@ import TopNav from './components/topNav'
 import Footer from './components/footer'
 import Body from './components/body'
 import Table from './components/table';
+import { db } from './firebase';
+import { collection, getDocs } from "firebase/firestore";
 import { getListing } from './api.js'
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@emotion/react";
@@ -17,6 +19,11 @@ function App() {
     const [bodyHow, setBodyHow] = useState(false)  // set to false when using real website)
     const [bodyAbout, setBodyAbout] = useState(false)
     const [repo, setRepo] = useState([]) // holds API response data
+
+    //Firebase Database
+    const itemsTableRef = collection(db, "items");
+    const [items, setItems] = useState([]);
+
 
     // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
     const getRepo = async () => {
