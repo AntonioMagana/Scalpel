@@ -3,12 +3,11 @@ import Header from './components/header'
 import TopNav from './components/topNav'
 import Footer from './components/footer'
 import Body from './components/body'
-import Table from './components/table';
-import { db } from './firebase';
-import { collection, getDocs } from "firebase/firestore";
+import Table from './components/table'
+import db from './firebase'
 import { getListing } from './api.js'
-import { createTheme } from "@mui/material/styles";
-import { ThemeProvider } from "@emotion/react";
+import { createTheme } from "@mui/material/styles"
+import { ThemeProvider } from "@emotion/react"
 
 function App() {
     // Create states for e-commerce stores
@@ -21,9 +20,7 @@ function App() {
     const [repo, setRepo] = useState([]) // holds API response data
 
     //Firebase Database
-    const itemsTableRef = collection(db, "items");
-    const [items, setItems] = useState([]);
-
+    const itemsRef = db.firestore().collection("items");
 
     // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
     const getRepo = async () => {
@@ -34,7 +31,6 @@ function App() {
         catch (err) { console.error(err); }
     }
     useEffect(() => getRepo(), []);
-
     const mdTheme = createTheme(); // materialUI theme
     return (
         <div className='container'>
