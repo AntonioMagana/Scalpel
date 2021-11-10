@@ -20,7 +20,13 @@ function App() {
     const [repo, setRepo] = useState([]) // holds API response data
 
     //Firebase Database
-    const itemsRef = db.firestore().collection("items");
+    //const [items, setItems] = useState(true);
+    //const itemsRef = db.firestore().collection("items");
+    db.firestore().collection("items").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            console.log(doc.data())
+        })
+    })
 
     // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
     const getRepo = async () => {
