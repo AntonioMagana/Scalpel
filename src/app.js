@@ -20,8 +20,7 @@ function App() {
     const [repo, setRepo] = useState([]) // holds API response data
 
     //Firebase Database
-    //const [items, setItems] = useState(true);
-    //const itemsRef = db.firestore().collection("items");
+    //Collection = table; documents = entries in table
     db.firestore().collection("items").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             console.log(doc.data())
