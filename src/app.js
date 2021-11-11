@@ -5,7 +5,7 @@ import Footer from './components/footer'
 import Body from './components/body'
 import Table from './components/table'
 import db from './firebase'
-import { getListing } from './api.js'
+import { getListing } from './api/api.listing.js'
 import { createTheme } from "@mui/material/styles"
 import { ThemeProvider } from "@emotion/react"
 
@@ -28,7 +28,7 @@ function App() {
         })
     })
 
-    // AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN
+    /* AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN */
     const getRepo = async () => {
         try {
             const results = await getListing('nintendo_switch');
@@ -36,8 +36,9 @@ function App() {
         }
         catch (err) { console.error(err); }
     }
-    useEffect(() => getRepo(), []);
+    useEffect(() => getRepo(), []); // Calls getRepo to get api data
     const mdTheme = createTheme(); // materialUI theme
+
     return (
         <div className='container'>
             <ThemeProvider theme={mdTheme}>
