@@ -21,11 +21,11 @@ function App() {
 
     //Firebase Database
     //Collection = table; documents = entries in table
-    db.firestore().collection("items").get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-            console.log(doc.data())
-        })
-    })
+    // db.firestore().collection("items").get().then((snapshot) => {
+    //     snapshot.docs.forEach(doc => {
+    //         console.log(doc.data())
+    //     })
+    // })
 
     /* AXIOS API FETCH AMAZON DATA ACCORDING TO ASIN */
     const getRepo = async () => {
