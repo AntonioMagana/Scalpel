@@ -21,8 +21,8 @@ export default TopNav
                     <a href='javascript:void(0)' className='dropbtn'>Stores</a> 
                     <div className='dropdown-content'>
                         <a href='#' >Best Buy</a>
-                        <a href='#' >Amazon</a>
-                        <a href='#' >Walmart</a>
+                        <a href='#' >AmazonBody</a>
+                        <a href='#' >WalmartBody</a>
                     </div>
                 </li> */}
                 
