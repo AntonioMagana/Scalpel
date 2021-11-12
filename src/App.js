@@ -1,15 +1,15 @@
 import { useState } from "react"
 import Header from './components/header'
-import TopNav from './components/topNav'
+import TopNavBar from './components/topNavBar'
 import Footer from './components/footer'
-import BodyRoute from './components/bodyRoute'
+import Body from './components/body'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 function App() {
-    //Stock BodyRoute
+    //Stock Body
     const [bodyStock, setBodyStock] = useState(true) //Set to true when using real website)
     //Best Buy Form
     const [bodyBB, setBodyBB] = useState(false)
@@ -17,9 +17,9 @@ function App() {
     const [bodyAmazon, setBodyAmazon] = useState(false)
     //WalmartBody Form
     const [bodyWalmart, setBodyWalmart] = useState(false)
-    //How To BodyRoute
+    //How To Body
     const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
-    //About Us BodyRoute
+    //About Us Body
     const [bodyAbout, setBodyAbout] = useState(false)
 
   return (
@@ -27,8 +27,8 @@ function App() {
 {/** header.js **/}
       <Header />
 
-{/** this is topNav.js **/}
-      <TopNav
+{/** this is topNavBar.js **/}
+      <TopNavBar
         homeClick={() => setBodyStock(!bodyStock)} 
         bbClick={() => setBodyBB(!bodyBB)} 
         amazonClick={() => setBodyAmazon(!bodyAmazon)} 
@@ -37,8 +37,8 @@ function App() {
         aboutClick={() => setBodyAbout(!bodyAbout)} 
       />
 
-{/** this is bodies.js **/}
-      <BodyRoute
+{/** this is _body.js **/}
+      <Body
       bStock={bodyStock} 
       bBB={bodyBB}  
       bAma={bodyAmazon}  

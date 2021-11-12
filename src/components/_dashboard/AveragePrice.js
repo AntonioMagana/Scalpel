@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Title from './title';
+import Title from './Title';
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider} from "@emotion/react";
 import Box from "@mui/material/Box";

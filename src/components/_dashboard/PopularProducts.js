@@ -2,12 +2,6 @@ import { Icon } from '@iconify/react';
 import bugFilled from '@iconify/icons-ant-design/bug-filled';
 import { alpha, styled } from '@mui/material/styles';
 import {Box, Card, Container, Grid, Typography} from '@mui/material';
-import WeeklyVisits from "./WeeklyVisits";
-import AppNewUsers from "./AppNewUsers";
-import AppItemOrders from "./AppItemOrders";
-import AppBugReports from "./AppBugReports";
-import LatestUpdates from "./LatestUpdates";
-
 
 // ----------------------------------------------------------------------
 

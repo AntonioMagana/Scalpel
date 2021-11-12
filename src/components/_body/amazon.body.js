@@ -3,8 +3,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TableMUI from '@mui/material/Table'
 import {blue} from '@mui/material/colors';
 import Button from '@mui/material/Button';
-import Chart from "../chart";
-import AveragePrice from "../averagePrice";
+import Chart from "../_dashboard/Chart";
+import AveragePrice from "../_dashboard/AveragePrice";
 
 const AmazonBody = () => {
     const theme = createTheme({
