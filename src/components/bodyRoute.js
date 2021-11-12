@@ -5,7 +5,7 @@ import WalmartBody from './bodies/walmart.body'
 import HowToBody from './bodies/howTo.body'
 import AboutUsBody from './bodies/aboutUs.body'
 
-const Body = ( {bStock, bBB, bAma, bWal, bHow, bAbout}) => {
+const BodyRoute = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
 
     return (
         <div className='body'>
@@ -19,4 +19,4 @@ const Body = ( {bStock, bBB, bAma, bWal, bHow, bAbout}) => {
     )
 }
 
-export default Body
+export default BodyRoute
