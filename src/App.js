@@ -21,6 +21,17 @@ function App() {
     const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
     //About Us Body
     const [bodyAbout, setBodyAbout] = useState(false)
+    //Body Flag
+    const [bodyFlag, setBodyFlag] = useState(false)
+
+    function toggleStateToFalse() {
+        setBodyStock(false);
+        setBodyBB(false);
+        setBodyAmazon(false);
+        setBodyWalmart(false);
+        setBodyHow(false);
+        setBodyAbout(false);
+    }
 
   return (
     <div className='container'>
@@ -29,12 +40,30 @@ function App() {
 
 {/** this is topNavBar.js **/}
       <TopNavBar
-        homeClick={() => setBodyStock(!bodyStock)} 
-        bbClick={() => setBodyBB(!bodyBB)} 
-        amazonClick={() => setBodyAmazon(!bodyAmazon)} 
-        walmartClick={() => setBodyWalmart(!bodyWalmart)} 
-        howClick={() => setBodyHow (!bodyHow)} 
-        aboutClick={() => setBodyAbout(!bodyAbout)} 
+        homeClick={() => {
+            toggleStateToFalse()
+            setBodyStock(true)
+        }}
+        bbClick={() =>{
+            toggleStateToFalse()
+            setBodyBB(true)
+        }}
+        amazonClick={() => {
+            toggleStateToFalse()
+            setBodyAmazon(true)
+        }}
+        walmartClick={() => {
+            toggleStateToFalse()
+            setBodyWalmart(true)
+        }}
+        howClick={() => {
+            toggleStateToFalse()
+            setBodyHow (true)
+        }}
+        aboutClick={() => {
+            toggleStateToFalse()
+            setBodyAbout(true)
+        }}
       />
 
 {/** this is _body.js **/}
