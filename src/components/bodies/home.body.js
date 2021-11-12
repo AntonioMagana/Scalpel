@@ -7,16 +7,13 @@ import AppNewsUpdate from "../_dashboard/AppNewsUpdate";
 const HomeBody = () => {
     return (
         <div>
-            <Container maxWidth="xl">
+            <Container maxWidth="lg" spacing={3}>
                 <Box sx={{ pb: 5 }}>
                     <Typography variant="h4">Dashboard</Typography>
                 </Box>
-
                 <PopularProducts />
                 <br/>
                 <LatestUpdates />
-                <AppNewsUpdate />
-
             </Container>
         </div>
     )

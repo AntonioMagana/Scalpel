@@ -40,19 +40,16 @@ const TIMELINES = [
 ];
 
 // ----------------------------------------------------------------------
-
 export default function LatestUpdates() {
   return (
-    <Card
-      sx={{
-        '& .MuiTimelineItem-missingOppositeContent:before': {
-          display: 'none'
-        }
-      }}
-    >
+    <Card>
       <CardHeader title="Latest Updates" />
       <CardContent>
-        <Timeline>
+        <Timeline sx= {{
+         bgcolor: '#fff',
+          '& .MuiTimelineItem-missingOppositeContent:before': {
+            display: 'none'
+          }}}>
           <TimelineItem>
             <TimelineSeparator>
               <TimelineDot color="primary" />
