@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-import Title from './Title';
+import Title from '../components/_dashboard/Title';
 
 /**Displays line graph of price over time**/
 // Generate Sales Data
@@ -21,12 +21,13 @@ const data = [
     createData('10/31', undefined),
 ];
 
-export default function Chart() {
+export default function Chart(info) {
     const theme = useTheme();
+    //console.log(info);
 
     return (
         <React.Fragment>
-            <Title>Smite</Title>
+            <Title>Today</Title>
             <ResponsiveContainer>
                 <LineChart
                     data={data}
@@ -55,7 +56,7 @@ export default function Chart() {
                                 ...theme.typography.body1,
                             }}
                         >
-                            smite ($)
+                            Price ($)
                         </Label>
                     </YAxis>
                     <Line

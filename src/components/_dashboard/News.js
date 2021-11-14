@@ -39,7 +39,7 @@ function NewsItem() {
   );
 }
 
-export default function AppNewsUpdate() {
+export default function News() {
   return (
     <Card>
       <CardHeader title="News Update" />

@@ -1,4 +1,4 @@
-const AboutUsBody = () => {
+const AboutUsForm = () => {
     return (
         <div>
             <div>About Us Page</div>
@@ -6,4 +6,4 @@ const AboutUsBody = () => {
     )
 }
 
-export default AboutUsBody
+export default AboutUsForm

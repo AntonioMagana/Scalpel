@@ -1,12 +1,15 @@
-import {TableHead, TableCell, TableRow, TableBody, TableContainer, Paper, Grid, Container} from '@mui/material';
+import { Paper, Grid, Container} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import TableMUI from '@mui/material/Table'
-import {blue} from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import Button from '@mui/material/Button';
-import Chart from "../_dashboard/Chart";
+import Chart from "../chart";
 import AveragePrice from "../_dashboard/AveragePrice";
+import Table from "../table";
+import GetProduct from "../../api/product";
 
-const AmazonBody = () => {
+const asin = ["B07VGRJDFY", 'B097MYTZMW', 'B08V1ZWGVR', 'B08HR6ZBYJ', 'B08H75RTZ8', 'B08FC5L3RG'];
+
+const AmazonForm = (data) => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -17,6 +20,10 @@ const AmazonBody = () => {
             },
         },
     });
+    const arr =[]
+    function createData(title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by) {
+        return { title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by };
+    }
 
     return (
         <div>
@@ -31,7 +38,7 @@ const AmazonBody = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8} lg={9}>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 290,}}>
-                            <Chart />
+                            { Chart("chart called") }
                         </Paper>
                     </Grid>
 {/** AVERAGE_PRICE ----------------------------------------------------------------------*/}
@@ -40,34 +47,19 @@ const AmazonBody = () => {
                             <AveragePrice />
                         </Paper>
                     </Grid>
+
+                    <Grid item xs={12} md={8} lg={9}>
+                        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 300}}>
+                            { Table() }
+                        </Paper>
+                    </Grid>
                 </Grid>
             </Container>
 
 {/** TABLE ----------------------------------------------------------------------*/}
-            <TableContainer component={Paper}>
-                <TableMUI sx={{ minWidth: 200 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }}>
-                                smite
-                            </TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }} align="left">
-                                smite
-                            </TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }} align="left">
-                                smite
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableCell component="th" scope="row">smite</TableCell>
-                        <TableCell align="left">smite</TableCell>
-                        <TableCell align="left">smite</TableCell>
-                    </TableBody>
-                </TableMUI>
-            </TableContainer>
+
         </div>
     )
 }
 
-export default AmazonBody
+export default AmazonForm

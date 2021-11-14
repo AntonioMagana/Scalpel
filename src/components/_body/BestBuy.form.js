@@ -1,5 +1,5 @@
 
-const BestBuyBody = () => {
+const BestBuyForm = () => {
     return (
         <div>
             <div>Best Buy Form</div>
@@ -7,4 +7,4 @@ const BestBuyBody = () => {
     )
 }
 
-export default BestBuyBody
+export default BestBuyForm

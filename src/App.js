@@ -1,28 +1,21 @@
 import { useState } from "react"
 import Header from './components/header'
-import TopNavBar from './components/topNavBar'
+import TopNav from './components/topNav'
 import Footer from './components/footer'
-import Body from './components/body'
+import AppRoute from './app.route'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 function App() {
-    //Stock Body
+    // states
     const [bodyStock, setBodyStock] = useState(true) //Set to true when using real website)
-    //Best Buy Form
     const [bodyBB, setBodyBB] = useState(false)
-    //AmazonBody Form
     const [bodyAmazon, setBodyAmazon] = useState(false)
-    //WalmartBody Form
     const [bodyWalmart, setBodyWalmart] = useState(false)
-    //How To Body
     const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
-    //About Us Body
     const [bodyAbout, setBodyAbout] = useState(false)
-    //Body Flag
-    const [bodyFlag, setBodyFlag] = useState(false)
 
     function toggleStateToFalse() {
         setBodyStock(false);
@@ -38,8 +31,8 @@ function App() {
 {/** header.js **/}
       <Header />
 
-{/** this is topNavBar.js **/}
-      <TopNavBar
+{/** this is topnav.js **/}
+      <TopNav
         homeClick={() => {
             toggleStateToFalse()
             setBodyStock(true)
@@ -67,7 +60,7 @@ function App() {
       />
 
 {/** this is _body.js **/}
-      <Body
+      <AppRoute
       bStock={bodyStock} 
       bBB={bodyBB}  
       bAma={bodyAmazon}  

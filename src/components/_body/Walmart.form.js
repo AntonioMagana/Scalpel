@@ -1,4 +1,4 @@
-const WalmartBody = () => {
+const WalmartForm = () => {
     return (
         <div>
             <div>Walmart Form</div>
@@ -6,4 +6,4 @@ const WalmartBody = () => {
     )
 }
 
-export default WalmartBody
+export default WalmartForm
