@@ -7,9 +7,10 @@ import AveragePrice from "../_dashboard/AveragePrice";
 import Table from "../table";
 import GetProduct from "../../api/product";
 
-const asin = ["B07VGRJDFY", 'B097MYTZMW', 'B08V1ZWGVR', 'B08HR6ZBYJ', 'B08H75RTZ8', 'B08FC5L3RG'];
+
 
 const AmazonForm = (data) => {
+    console.log(data);
     const theme = createTheme({
         palette: {
             primary: {
@@ -20,7 +21,7 @@ const AmazonForm = (data) => {
             },
         },
     });
-    const arr =[]
+
     function createData(title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by) {
         return { title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by };
     }

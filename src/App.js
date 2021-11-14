@@ -41,9 +41,9 @@ function App() {
             toggleStateToFalse()
             setBodyBB(true)
         }}
-        amazonClick={() => {
+        amazonClick={async () => {
             toggleStateToFalse()
-            setBodyAmazon(true)
+            await setBodyAmazon(true)
         }}
         walmartClick={() => {
             toggleStateToFalse()
