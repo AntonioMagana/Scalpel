@@ -1,20 +1,20 @@
 import { Box, Grid, Container, Typography } from '@mui/material';
 
-import PopularProducts from "./_dashboard/PopularProducts";
+import Popular_products from "../popular_products";
 
 
-const Dashboard = () => {
+const Home = () => {
     return (
         <div>
             <br/>
             <Container maxWidth="lg" spacing={3}>
                 <Box sx={{ pb: 5 }}>
-                    <Typography variant="h5">Dashboard</Typography>
+                    <Typography variant="h5">Welcome to Scalpel</Typography>
                 </Box>
-                <PopularProducts />
+                <Popular_products />
             </Container>
         </div>
     )
 }
 
-export default Dashboard
+export default Home

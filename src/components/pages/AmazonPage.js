@@ -3,9 +3,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Chart from "../chart";
-import AveragePrice from "../_dashboard/AveragePrice";
+import Average_price from "../average_price";
 import Table from "../table";
-import db from "../../firebase";
+import db from "../../firebase/firebase";
 import TableMUI from "@mui/material/Table";
 
 
@@ -24,14 +24,11 @@ const AmazonForm = () => {
 
     return (
         <div>
-{/** PRODUCT NAME AND STATUS ----------------------------------------------------------------------*/}
             <ThemeProvider theme={theme}>
                 <Button>Amazon Store</Button>
                 <Button color="secondary">Active</Button>
             </ThemeProvider>
-
             <Container maxWidth="xl" sx={{mt: 4, mb: 4}}>
-{/** TABLE ----------------------------------------------------------------------*/}
                 <Grid>
                     <Grid item xs={12} md={8} lg={9}>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 600}}>

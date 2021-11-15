@@ -1,8 +1,8 @@
 import { useState } from "react"
 import Header from './components/header'
-import TopNav from './components/topNav'
+import _top_nav from './components/_top_nav'
 import Footer from './components/footer'
-import AppRoute from './app.route'
+import Body from './body'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -33,7 +33,7 @@ function App() {
             <Header/>
 
             {/** this is topnav.js **/}
-            <TopNav
+            <_top_nav
                 homeClick={() => {
                     toggleStateToFalse()
                     setBodyStock(true)
@@ -60,8 +60,8 @@ function App() {
                 }}
             />
 
-            {/** this is _body.js **/}
-            <AppRoute
+            {/** this is pages.js **/}
+            <Body
                 bStock={bodyStock}
                 bBB={bodyBB}
                 bAma={bodyAmazon}

@@ -86,13 +86,22 @@ export default function Table(collectionRef) {
                     <TableBody>
                         {info.map((i) => (
                             <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                                <TableCell align="left"> <img src={i.image} alt='pic' width="55" height="auto"/></TableCell>
-                                <TableCell component="th" scope="row"> {i.title} </TableCell>
-                                <TableCell align="left"> ${i.prices.current_price} </TableCell>
-                                <TableCell align="left">{i.out_of_stock.toString()} </TableCell>
+                                <TableCell align="left">
+                                    <a href={i.full_link}>
+                                        <img src={i.image} alt='pic' width="55" height="auto"/>
+                                    </a>
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {i.title}
+                                </TableCell>
+                                <TableCell align="left">
+                                    ${i.prices.current_price}
+                                </TableCell>
+                                <TableCell align="left">
+                                    {i.out_of_stock.toString()}
+                                </TableCell>
                             </TableRow>
                         ))}
-
                     </TableBody>
                 </TableMUI>
             </TableContainer>

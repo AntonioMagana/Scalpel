@@ -1,18 +1,18 @@
-import Dashboard from './components/dashboard'
-import BestBuyForm from './components/_body/BestBuy.form'
-import AmazonForm from './components/_body/Amazon.form'
-import WalmartForm from './components/_body/Walmart.form'
-import HowToForm from './components/_body/HowTo.form'
-import AboutUsForm from './components/_body/AboutUs.form'
+import Home from './components/pages/Home'
+import BestBuyPage from './components/pages/BestBuyPage'
+import AmazonForm from './components/pages/AmazonPage'
+import WalmartPage from './components/pages/WalmartPage'
+import HowToPage from './components/pages/HowToPage'
+import AboutUsPage from './components/pages/AboutUsPage'
 
-import db from "./firebase"
+import db from "./firebase/firebase"
 import GetProduct from "./api/product";
 import {useEffect} from "react";
 //-----------Nintendo Switch,---3070,---------3080,---------3090,---------Xbox,------PlayStation
 //const asin = ["B07VGRJDFY", 'B097MYTZMW', 'B08V1ZWGVR', 'B08HR6ZBYJ', 'B08H75RTZ8', 'B08FC5L3RG'];
 
 
-const AppRoute = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
+const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
     // UNCOMMENT TO UPDATE ITEM DATA
     /*
     const getData = async () => {
@@ -41,17 +41,17 @@ const AppRoute = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
 
     return (
         <div className='body'>
-            {bStock && <Dashboard/>}
-            {bBB && <BestBuyForm/>}
+            {bStock && <Home/>}
+            {bBB && <BestBuyPage/>}
             {bAma && <AmazonForm/>}
-            {bWal && <WalmartForm/>}
-            {bHow && <HowToForm/>}
-            {bAbout && <AboutUsForm/>}
+            {bWal && <WalmartPage/>}
+            {bHow && <HowToPage/>}
+            {bAbout && <AboutUsPage/>}
         </div>
     )
 }
 
-export default AppRoute;
+export default Body;
 
 
 /*

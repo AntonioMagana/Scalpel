@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Title from './Title';
+import Title from './utils/Title';
 import {createTheme} from "@mui/material/styles";
 import {ThemeProvider} from "@emotion/react";
 import Box from "@mui/material/Box";
@@ -25,7 +25,7 @@ const theme = createTheme({
     },
 });
 
-export default function AveragePrice() {
+export default function Average_price() {
     return (
         <React.Fragment>
             <ThemeProvider theme={theme}>

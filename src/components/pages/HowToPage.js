@@ -1,4 +1,4 @@
-const HowToForm = () => {
+const HowToPage = () => {
     return (
         <div>
             <div className='grid-container'>
@@ -37,4 +37,4 @@ const HowToForm = () => {
     )
 }
 
-export default HowToForm
+export default HowToPage

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-export const TopNav = ({homeClick, bbClick, amazonClick, walmartClick, howClick, aboutClick} ) => {
+export const _top_nav = ({homeClick, bbClick, amazonClick, walmartClick, howClick, aboutClick} ) => {
     return (
         <div className='topnav'>
             <Stack spacing={2} direction="row">
@@ -39,6 +39,6 @@ export const TopNav = ({homeClick, bbClick, amazonClick, walmartClick, howClick,
 </div>
 
  */
-export default TopNav
+export default _top_nav
 
 

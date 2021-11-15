@@ -31,7 +31,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function PopularProducts() {
+export default function Popular_products() {
     return (
         <div>
                 <Grid container spacing={3}>

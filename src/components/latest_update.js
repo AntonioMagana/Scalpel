@@ -40,7 +40,7 @@ const TIMELINES = [
 ];
 
 // ----------------------------------------------------------------------
-export default function LatestUpdates() {
+export default function Latest_update() {
   return (
     <Card>
       <CardHeader title="Latest Updates" />

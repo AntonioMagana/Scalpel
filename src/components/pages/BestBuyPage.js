@@ -1,5 +1,5 @@
 
-const BestBuyForm = () => {
+const BestBuyPage = () => {
     return (
         <div>
             <div>Best Buy Form</div>
@@ -7,4 +7,4 @@ const BestBuyForm = () => {
     )
 }
 
-export default BestBuyForm
+export default BestBuyPage
