@@ -7,22 +7,32 @@ import {Fragment, useEffect, useState} from "react";
 
 
 // Conditionally renders empty table until data is received
-export default function Table(docRef) {
+export default function Table(collectionRef) {
     const [isLoading, setLoading] = useState(true);
-    const [info, setInfo] = useState();
+    const [info, setInfo] = useState([]);
 
-    function createData(title, price, out_of_stock) {
-        return {title, price, out_of_stock}
+    // Get all documents in a collection
+    var rows = [];
+    function createData(title, prices, out_of_stock, image, asin, full_link, ship_info) {
+        return {title, prices, out_of_stock, image, asin, full_link, ship_info}
     }
 
     useEffect(() => {
-        docRef.get().then((doc) => {
-            if (doc.exists) {
-                const data = createData(doc.data().title, doc.data().price, doc.data().out_of_stock);
-                setInfo(data);
-                setLoading(false);
-                console.log(data);
-            }
+        collectionRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                rows.push(createData(
+                    doc.data().title,
+                    doc.data().prices,
+                    doc.data().out_of_stock,
+                    doc.data().image,
+                    doc.data().asin,
+                    doc.data().full_link,
+                    doc.data().ship_info
+                ));
+                //console.log(rows);
+            })
+            setInfo(rows);
+            setLoading(false);
         })
     }, []);
 
@@ -61,11 +71,12 @@ export default function Table(docRef) {
                 <TableMUI sx={{minWidth: 200}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}/>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
                                 Product
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
-                                ($)MSRP
+                                MSRP
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
                                 Out-of-Stock
@@ -73,11 +84,15 @@ export default function Table(docRef) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                            <TableCell component="th" scope="row"> {info.title} </TableCell>
-                            <TableCell align="left"> {info.price} </TableCell>
-                            <TableCell align="left">{info.out_of_stock.toString()} </TableCell>
-                        </TableRow>
+                        {info.map((i) => (
+                            <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                                <TableCell align="left"> <img src={i.image} alt='pic' width="55" height="auto"/></TableCell>
+                                <TableCell component="th" scope="row"> {i.title} </TableCell>
+                                <TableCell align="left"> ${i.prices.current_price} </TableCell>
+                                <TableCell align="left">{i.out_of_stock.toString()} </TableCell>
+                            </TableRow>
+                        ))}
+
                     </TableBody>
                 </TableMUI>
             </TableContainer>

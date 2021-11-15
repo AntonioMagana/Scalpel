@@ -20,34 +20,22 @@ const AmazonForm = () => {
             },
         },
     });
-    const docRef = db.firestore().collection("items").doc("PlayStation5");
+    const collectionRef = db.firestore().collection("items");
 
     return (
         <div>
 {/** PRODUCT NAME AND STATUS ----------------------------------------------------------------------*/}
             <ThemeProvider theme={theme}>
-                <Button>Amazon Products</Button>
+                <Button>Amazon Store</Button>
                 <Button color="secondary">Active</Button>
             </ThemeProvider>
 
-            <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
-{/** CHART ----------------------------------------------------------------------*/}
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={8} lg={9}>
-                        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 290,}}>
-                            { Chart("chart called") }
-                        </Paper>
-                    </Grid>
-{/** AVERAGE_PRICE ----------------------------------------------------------------------*/}
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper sx={{p: 1, display: 'flex', flexDirection: 'column', height: 150,}}>
-                            <AveragePrice/>
-                        </Paper>
-                    </Grid>
+            <Container maxWidth="xl" sx={{mt: 4, mb: 4}}>
 {/** TABLE ----------------------------------------------------------------------*/}
+                <Grid>
                     <Grid item xs={12} md={8} lg={9}>
-                        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 300}}>
-                            { Table(docRef) }
+                        <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 600}}>
+                            { Table(collectionRef) }
                         </Paper>
                     </Grid>
                 </Grid>
