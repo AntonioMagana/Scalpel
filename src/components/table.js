@@ -3,59 +3,143 @@ import {Paper, TableBody, TableCell, TableContainer, TableHead, TableRow} from "
 import TableMUI from "@mui/material/Table";
 import {createTheme} from "@mui/material/styles";
 import {blue} from "@mui/material/colors";
+import {Fragment, useEffect, useState} from "react";
 
-export default function Table(data) { // returns [Object, Object ...]
-    console.log(data) // test if listing object works
-    /*
-    const rows = []
-    function createData(name, price, condition) {
-        return { name, price, condition };
+
+// Conditionally renders empty table until data is received
+export default function Table(docRef) {
+    const [isLoading, setLoading] = useState(true);
+    const [info, setInfo] = useState();
+
+    function createData(title, price, out_of_stock) {
+        return {title, price, out_of_stock}
     }
-    // store JSON response object into an array
-    data.map((d) =>
-        rows.push(createData(
-            d.seller.name,
-            d.current_price,
-            d.condition
-        ))
-    );
 
-     */
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: blue[500],
-            },
-            secondary: {
-                // This is green.A700 as hex.
-                main: '#11cb5f',
-            },
-        },
-    });
-    return (
-        <div>
+    useEffect(() => {
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                const data = createData(doc.data().title, doc.data().price, doc.data().out_of_stock);
+                setInfo(data);
+                setLoading(false);
+                console.log(data);
+            }
+        })
+    }, []);
+
+    if (isLoading) {
+        return <Fragment>
             <TableContainer component={Paper}>
-                <TableMUI sx={{ minWidth: 200 }} aria-label="simple table">
+                <TableMUI sx={{minWidth: 200}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }}>
-                                smite
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
+                                Product
                             </TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }} align="left">
-                                smite
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                                ($)MSRP
                             </TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize:'h6.fontSize' }} align="left">
-                                smite
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                                In-Stock
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableCell component="th" scope="row">smite</TableCell>
-                        <TableCell align="left">smite</TableCell>
-                        <TableCell align="left">smite</TableCell>
+                        <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                            <TableCell component="th" scope="row"> loading.. </TableCell>
+                            <TableCell align="left"> loading.. </TableCell>
+                            <TableCell align="left"> loading.. </TableCell>
+                        </TableRow>
                     </TableBody>
                 </TableMUI>
             </TableContainer>
-        </div>
+        </Fragment>
+    }
+
+    return (
+        <Fragment>
+            <TableContainer component={Paper}>
+                <TableMUI sx={{minWidth: 200}} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
+                                Product
+                            </TableCell>
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                                ($)MSRP
+                            </TableCell>
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                                Out-of-Stock
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                            <TableCell component="th" scope="row"> {info.title} </TableCell>
+                            <TableCell align="left"> {info.price} </TableCell>
+                            <TableCell align="left">{info.out_of_stock.toString()} </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </TableMUI>
+            </TableContainer>
+        </Fragment>
     );
 }
+
+
+/*
+    let rows = [];
+    function getFirebaseData() {
+
+
+        let data;
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                data = createData(doc.data().title, doc.data().price, doc.data().out_of_stock);
+                setInfo(data);
+                setLoading(false);
+                console.log("firebase data received");
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error)
+        })
+        return data;
+    }
+    rows.push(getFirebaseData());
+
+     */
+
+/*
+const realTable =
+    <div>
+        <TableContainer component={Paper}>
+            <TableMUI sx={{minWidth: 200}} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
+                            Product
+                        </TableCell>
+                        <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                            ($)MSRP
+                        </TableCell>
+                        <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
+                            In-Stock
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row) => (
+                        <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                            <TableCell component="th" scope="row"> {row.title} </TableCell>
+                            <TableCell align="left"> {row.asin} </TableCell>
+                            <TableCell align="left"> {row.out_of_stock} </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </TableMUI>
+        </TableContainer>
+    </div>
+
+ */
+

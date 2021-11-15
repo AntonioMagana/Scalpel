@@ -1,16 +1,15 @@
-import { Paper, Grid, Container} from '@mui/material';
+import {Paper, Grid, Container, TableHead, TableRow, TableCell, TableBody, TableContainer} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Chart from "../chart";
 import AveragePrice from "../_dashboard/AveragePrice";
 import Table from "../table";
-import GetProduct from "../../api/product";
+import db from "../../firebase";
+import TableMUI from "@mui/material/Table";
 
 
-
-const AmazonForm = (data) => {
-    console.log(data);
+const AmazonForm = () => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -21,20 +20,17 @@ const AmazonForm = (data) => {
             },
         },
     });
-
-    function createData(title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by) {
-        return { title, image, asin, full_link, current_price, out_of_stock, sold_by, shipped_by };
-    }
+    const docRef = db.firestore().collection("items").doc("PlayStation5");
 
     return (
         <div>
 {/** PRODUCT NAME AND STATUS ----------------------------------------------------------------------*/}
             <ThemeProvider theme={theme}>
-                <Button>Nintendo Switch w/ Smite</Button>
-                <Button color="secondary">In-Stock</Button>
+                <Button>Amazon Products</Button>
+                <Button color="secondary">Active</Button>
             </ThemeProvider>
 
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
 {/** CHART ----------------------------------------------------------------------*/}
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8} lg={9}>
@@ -45,20 +41,17 @@ const AmazonForm = (data) => {
 {/** AVERAGE_PRICE ----------------------------------------------------------------------*/}
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper sx={{p: 1, display: 'flex', flexDirection: 'column', height: 150,}}>
-                            <AveragePrice />
+                            <AveragePrice/>
                         </Paper>
                     </Grid>
-
+{/** TABLE ----------------------------------------------------------------------*/}
                     <Grid item xs={12} md={8} lg={9}>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 300}}>
-                            { Table() }
+                            { Table(docRef) }
                         </Paper>
                     </Grid>
                 </Grid>
             </Container>
-
-{/** TABLE ----------------------------------------------------------------------*/}
-
         </div>
     )
 }
