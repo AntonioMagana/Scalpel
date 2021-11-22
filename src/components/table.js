@@ -1,5 +1,5 @@
 import '../styles/index.css'
-import {Paper, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Paper, TableBody, TableCell, TableContainer, TableHead, TableRow,Box, LinearProgress} from "@mui/material";
 import TableMUI from "@mui/material/Table";
 import {createTheme} from "@mui/material/styles";
 import {blue} from "@mui/material/colors";
@@ -17,8 +17,9 @@ export default function Table(collectionRef) {
         return {title, prices, out_of_stock, image, asin, full_link, ship_info}
     }
 
+    // Query collection group so it only gets item documents, NOT web-traffic
     useEffect(() => {
-        collectionRef.get().then((querySnapshot) => {
+        collectionRef.where('title', '!=', 'web-traffic').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 rows.push(createData(
                     doc.data().title,
@@ -46,7 +47,7 @@ export default function Table(collectionRef) {
                                 Product
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
-                                ($)MSRP
+                                MSRP
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
                                 In-Stock
@@ -55,9 +56,10 @@ export default function Table(collectionRef) {
                     </TableHead>
                     <TableBody>
                         <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                            <TableCell component="th" scope="row"> loading.. </TableCell>
-                            <TableCell align="left"> loading.. </TableCell>
-                            <TableCell align="left"> loading.. </TableCell>
+                            <br/><br/>
+                            <Box sx={{ width: '100%' }}>
+                                <LinearProgress />
+                            </Box>
                         </TableRow>
                     </TableBody>
                 </TableMUI>

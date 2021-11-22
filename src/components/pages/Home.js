@@ -8,7 +8,7 @@ const Home = () => {
         <div>
             <br/>
             <Container maxWidth="lg" spacing={3}>
-                <Box sx={{ pb: 5 }}>
+                <Box sx={{pb: 5}}>
                     <Typography variant="h5">Welcome to Scalpel</Typography>
                 </Box>
                 <Popular_products />

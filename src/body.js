@@ -1,43 +1,27 @@
+//TODO: -----------Nintendo Switch,---3070,---------3080,---------3090,---------Xbox,------PlayStation
+//TODO: const asin = ["B07VGRJDFY", 'B097MYTZMW', 'B08V1ZWGVR', 'B08HR6ZBYJ', 'B08H75RTZ8', 'B08FC5L3RG'];
 import Home from './components/pages/Home'
 import BestBuyPage from './components/pages/BestBuyPage'
 import AmazonForm from './components/pages/AmazonPage'
 import WalmartPage from './components/pages/WalmartPage'
 import HowToPage from './components/pages/HowToPage'
 import AboutUsPage from './components/pages/AboutUsPage'
-
 import db from "./firebase/firebase"
+import Time from "./components/utils/time";
 import GetProduct from "./api/product";
 import {useEffect} from "react";
-//-----------Nintendo Switch,---3070,---------3080,---------3090,---------Xbox,------PlayStation
-//const asin = ["B07VGRJDFY", 'B097MYTZMW', 'B08V1ZWGVR', 'B08HR6ZBYJ', 'B08H75RTZ8', 'B08FC5L3RG'];
 
-
+// Displays the page the user clicks
+// Contains Home, BestBuy, Amazon, Walmart, HowTo, AboutUs
 const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
-    // UNCOMMENT TO UPDATE ITEM DATA
-    /*
-    const getData = async () => {
-        try {
-            const map = new Map();
-            const results = await GetProduct('B08V1ZWGVR');
-            var docData = {
-                title: results.title,
-                image: results.images[0],
-                asin: results.asin,
-                full_link: results.full_link,
-                prices: results.prices,
-                out_of_stock: results.out_of_stock,
-                ship_info: results.ship_info
-            };
-            // Update firebase data
-            db.firestore().collection("items").doc("3080").set(docData).then(() => {
-                console.log("Document successfully written!");
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    }
-    useEffect(() => getData(), []);
-     */
+    // MM-DD-YYYY-HH-MM
+    const time = Time();
+
+    db.firestore().collection("items").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            console.log(doc.data())
+        })
+    })
 
     return (
         <div className='body'>
@@ -53,9 +37,17 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
 
 export default Body;
 
-
+//TODO: Print all documents in "items" collection
 /*
-   // store data into map, then store into state
+db.firestore().collection("items").get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        console.log(doc.data())
+    })
+})
+ */
+
+//TODO: Update/Create an item in firebase document
+/*
    const getData = async () => {
        try {
            const map = new Map();
@@ -70,34 +62,29 @@ export default Body;
                out_of_stock: results.out_of_stock,
                ship_info: results.ship_info
            };
-
-
            setData(items);
-
            // Update firebase data
            db.firestore().collection("items").doc("XboxSeriesX").set(docData).then(() => {
                console.log("Document successfully written!");
            });
-
-
        } catch (err) {console.log(err);}
+
+       useEffect(() => getData(), []);
        */
 
+//TODO: Update/Create web-traffic document
 /*
-db.firestore().collection("items").doc("PlayStation5").set(docData).then(() => {
-    console.log("Document successfully written!");
+const webDataModel = {
+    title: "web-traffic",
+    siteClicked: 0,
+    amazonClicked: 0,
+    bestBuyClicked: 0,
+    walmartClicked: 0,
+    date: time,
+};
+// Create firebase document "web_traffic"
+db.firestore().collection("items").doc("web_traffic").set(webDataModel).then(() => {
+    console.log("Web Traffic document created.");
 });
-
+});
  */
-
-//useEffect(() => getData(), []);
-
-/*
-db.firestore().collection("items").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        console.log(doc.data())
-    })
-})
-
- */
-
