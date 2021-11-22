@@ -14,14 +14,30 @@ import {useEffect} from "react";
 // Displays the page the user clicks
 // Contains Home, BestBuy, Amazon, Walmart, HowTo, AboutUs
 const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
+    // Increment siteClicked by one in web-traffic document
+    const siteRef = db.firestore().collection("items").doc("web_traffic");
+    let nSite = 0;
+    siteRef.get().then((doc) => {
+        // Only increments if doc exists
+        if(doc.exists) {
+            nSite = doc.data().siteClicked;
+            nSite+=1;
+            db.firestore().collection("items")
+                .doc("web_traffic")
+                .update({
+                    siteClicked: nSite
+                })
+                .then(() => {
+                    console.log("site clicked");
+                });
+        }
+        else{
+            console.log("No such document found!");
+        }
+    })
+
     // MM-DD-YYYY-HH-MM
     const time = Time();
-
-    db.firestore().collection("items").get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-            console.log(doc.data())
-        })
-    })
 
     return (
         <div className='body'>
@@ -44,6 +60,14 @@ db.firestore().collection("items").get().then((snapshot) => {
         console.log(doc.data())
     })
 })
+ */
+
+//TODO: Print 'web_traffic' document
+/*
+db.firestore().collection("items").doc("web_traffic").set(webDataModel).then(() => {
+    console.log("Web Traffic document created.");
+    }
+
  */
 
 //TODO: Update/Create an item in firebase document
@@ -83,8 +107,7 @@ const webDataModel = {
     date: time,
 };
 // Create firebase document "web_traffic"
-db.firestore().collection("items").doc("web_traffic").set(webDataModel).then(() => {
-    console.log("Web Traffic document created.");
+
 });
 });
  */

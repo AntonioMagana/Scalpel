@@ -19,7 +19,7 @@ export default function Table(collectionRef) {
 
     // Query collection group so it only gets item documents, NOT web-traffic
     useEffect(() => {
-        collectionRef.where('title', '!=', 'web-traffic').get().then((querySnapshot) => {
+        collectionRef.where('title', '!=', 'web_traffic').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 rows.push(createData(
                     doc.data().title,
