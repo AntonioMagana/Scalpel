@@ -7,6 +7,7 @@ import Average_price from "../average_price";
 import Table from "../table";
 import db from "../../firebase/firebase";
 import TableMUI from "@mui/material/Table";
+import {useEffect} from "react";
 
 
 const AmazonForm = () => {
@@ -32,7 +33,7 @@ const AmazonForm = () => {
                 <Grid>
                     <Grid item xs={12} md={8} lg={9}>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 600}}>
-                            { Table(collectionRef) }
+                            {Table(collectionRef)}
                         </Paper>
                     </Grid>
                 </Grid>

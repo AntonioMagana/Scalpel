@@ -21,15 +21,20 @@ const RootStyle = styled(Card)(({ theme }) => ({
 
 export default function WebTraffic() {
     const [site, setSite] = useState([]);
+    const [amazonSite, setAmazonSite] = useState([]);
 
     useEffect(() => {
         const siteRef = db.firestore().collection("items").doc("web_traffic");
         let nSite = 0;
+        let nAmazonSite = 0;
         siteRef.get().then((doc) => {
             // Only increments if doc exists
             if(doc.exists) {
                 nSite = doc.data().siteClicked;
+                nAmazonSite = doc.data().amazonClicked;
+
                 setSite(nSite);
+                setAmazonSite(nAmazonSite);
             }
             else{
                 console.log("No such document found!");
@@ -57,7 +62,7 @@ export default function WebTraffic() {
                 <Grid item xs>
                     <RootStyle>
                             <Icon width={50} icon="ant-design:amazon-circle-filled"/>
-                        <Typography variant="h3">insert n</Typography>
+                        <Typography variant="h3">{ amazonSite }</Typography>
                         <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
                             Amazon Visits
                         </Typography>

@@ -17,18 +17,24 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
     // Increment siteClicked by one in web-traffic document
     const siteRef = db.firestore().collection("items").doc("web_traffic");
     let nSite = 0;
+    let nAmazonSite = 0;
     siteRef.get().then((doc) => {
         // Only increments if doc exists
         if(doc.exists) {
             nSite = doc.data().siteClicked;
+            nAmazonSite = doc.data().amazonClicked;
             nSite+=1;
+            if(bAma && <AmazonForm />) {
+                nAmazonSite+=1;
+            }
             db.firestore().collection("items")
                 .doc("web_traffic")
                 .update({
-                    siteClicked: nSite
+                    siteClicked: nSite,
+                    amazonClicked: nAmazonSite,
                 })
                 .then(() => {
-                    console.log("site clicked");
+                    console.log("web traffic updated");
                 });
         }
         else{
