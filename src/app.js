@@ -16,6 +16,7 @@ function App() {
     const [bodyWalmart, setBodyWalmart] = useState(false)
     const [bodyHow, setBodyHow] = useState(false)  //set to false when using real website)
     const [bodyAbout, setBodyAbout] = useState(false)
+    const [bodySearch, setBodySearch] = useState(false);
 
 
     function toggleStateToFalse() {
@@ -25,6 +26,7 @@ function App() {
         setBodyWalmart(false);
         setBodyHow(false);
         setBodyAbout(false);
+        setBodySearch(false);
     }
 
     return (
@@ -58,6 +60,10 @@ function App() {
                     toggleStateToFalse()
                     setBodyAbout(true)
                 }}
+                searchClick={() => {
+                    toggleStateToFalse()
+                    setBodySearch(true)
+                }}
             />
 
             {/** this is pages.js **/}
@@ -68,6 +74,7 @@ function App() {
                 bWal={bodyWalmart}
                 bHow={bodyHow}
                 bAbout={bodyAbout}
+                bSearch={bodySearch}
             />
 
             {/** this is header.js **/}

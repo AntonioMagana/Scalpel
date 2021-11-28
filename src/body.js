@@ -10,16 +10,22 @@ import db from "./firebase/firebase"
 import Time from "./components/utils/time";
 import GetProduct from "./api/product";
 import {useEffect} from "react";
+import AmazonPage from "./components/pages/AmazonPage";
+import SearchPage from "./components/pages/SearchPage";
 
 // Displays the page the user clicks
 // Contains Home, BestBuy, Amazon, Walmart, HowTo, AboutUs
-const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
-    // Increment siteClicked by one in web-traffic document
+const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout, bSearch}) => {
+    // MM-DD-YYYY-HH-MM
+    const time = Time();
+
+    // Web traffic document reference
     const siteRef = db.firestore().collection("items").doc("web_traffic");
     let nSite = 0;
     let nAmazonSite = 0;
+
+    // Web traffic update
     siteRef.get().then((doc) => {
-        // Only increments if doc exists
         if(doc.exists) {
             nSite = doc.data().siteClicked;
             nAmazonSite = doc.data().amazonClicked;
@@ -42,9 +48,6 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
         }
     })
 
-    // MM-DD-YYYY-HH-MM
-    const time = Time();
-
     return (
         <div className='body'>
             {bStock && <Home/>}
@@ -53,6 +56,7 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout}) => {
             {bWal && <WalmartPage/>}
             {bHow && <HowToPage/>}
             {bAbout && <AboutUsPage/>}
+            {bSearch && <SearchPage/>}
         </div>
     )
 }

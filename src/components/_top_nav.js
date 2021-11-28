@@ -5,9 +5,9 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
+import { Icon } from '@iconify/react';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -24,7 +24,6 @@ const Search = styled('div')(({ theme }) => ({
     },
     align: 'right',
 }));
-
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -34,7 +33,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     alignItems: 'center',
     justifyContent: 'center',
 }));
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
@@ -52,7 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export const _top_nav = ({homeClick, bbClick, amazonClick, walmartClick, howClick, aboutClick} ) => {
+export const _top_nav = ({homeClick, bbClick, amazonClick, walmartClick, howClick, aboutClick, searchClick} ) => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -84,8 +82,26 @@ export const _top_nav = ({homeClick, bbClick, amazonClick, walmartClick, howClic
                             <Button variant="contained" className='navbtn' onClick={aboutClick}>
                                 About Us
                             </Button>
+
+                            <Search>
+                                <StyledInputBase placeholder="URL…" inputProps={{ 'aria-label': 'search' }} />
+                            </Search>
+                            <Button variant="contained" className='navbtn' onClick={searchClick}>
+                                <SearchIconWrapper>
+                                    <Icon icon="akar-icons:search" />
+                                </SearchIconWrapper>
+                            </Button>
+
+
+
+
                     </Stack>
                     {/*
+                    <TextField id="outlined-basic" label="Outlined" variant="outlined" >
+                            <Button variant="contained" className='navbtn' onClick={searchClick}>
+                                Insert search icon
+                            </Button>
+                        </TextField>
                         <Search >
                             <SearchIconWrapper>
 
