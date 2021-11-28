@@ -54,7 +54,7 @@ export default function WebTraffic() {
                             <Icon width={50} icon="tabler:device-desktop-analytics" />
                         <Typography variant="h3">{ site }</Typography>
                         <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                            User Visits
+                            User Visits (per week)
                         </Typography>
                     </RootStyle>
                 </Grid>
@@ -64,7 +64,7 @@ export default function WebTraffic() {
                             <Icon width={50} icon="ant-design:amazon-circle-filled"/>
                         <Typography variant="h3">{ amazonSite }</Typography>
                         <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                            Amazon Visits
+                            Amazon Visits (per week)
                         </Typography>
                     </RootStyle>
                 </Grid>

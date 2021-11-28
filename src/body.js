@@ -24,6 +24,34 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout, bSearch}) => {
     let nSite = 0;
     let nAmazonSite = 0;
 
+    //Update Amazon product every 3 minutes
+    const getData = async () => {
+        try {
+            const map = new Map();
+            const results = await GetProduct("B08HR6ZBYJ");
+
+            var docData = {
+                title: results.title,
+                image: results.images[0],
+                asin: results.asin,
+                full_link: results.full_link,
+                prices: results.prices,
+                out_of_stock: results.out_of_stock,
+                ship_info: results.ship_info
+            };
+            // Update firebase data
+            db.firestore().collection("items").doc("3090").set(docData).then(() => {
+                console.log("Document successfully written!");
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+       useEffect(() => {
+           setInterval(() => getData(), 900000)
+       }, []);
+
     // Web traffic update
     siteRef.get().then((doc) => {
         if(doc.exists) {
@@ -47,6 +75,7 @@ const Body = ({bStock, bBB, bAma, bWal, bHow, bAbout, bSearch}) => {
             console.log("No such document found!");
         }
     })
+
 
     return (
         <div className='body'>
@@ -83,25 +112,27 @@ db.firestore().collection("items").doc("web_traffic").set(webDataModel).then(() 
 //TODO: Update/Create an item in firebase document
 /*
    const getData = async () => {
-       try {
-           const map = new Map();
-           const results = await GetProduct("B08H75RTZ8");
+        try {
+            const map = new Map();
+            const results = await GetProduct("B08HR6ZBYJ");
 
-           var docData = {
-               title: results.title,
-               image: results.images[0],
-               asin: results.asin,
-               full_link: results.full_link,
-               prices: results.prices,
-               out_of_stock: results.out_of_stock,
-               ship_info: results.ship_info
-           };
-           setData(items);
-           // Update firebase data
-           db.firestore().collection("items").doc("XboxSeriesX").set(docData).then(() => {
-               console.log("Document successfully written!");
-           });
-       } catch (err) {console.log(err);}
+            var docData = {
+                title: results.title,
+                image: results.images[0],
+                asin: results.asin,
+                full_link: results.full_link,
+                prices: results.prices,
+                out_of_stock: results.out_of_stock,
+                ship_info: results.ship_info
+            };
+            // Update firebase data
+            db.firestore().collection("items").doc("3090").set(docData).then(() => {
+                console.log("Document successfully written!");
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
        useEffect(() => getData(), []);
        */

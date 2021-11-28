@@ -78,7 +78,7 @@ export default function Table(collectionRef) {
                                 Product
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
-                                MSRP
+                                Current Price
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
                                 Out-of-Stock

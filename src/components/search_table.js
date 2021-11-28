@@ -7,7 +7,7 @@ import TableMUI from "@mui/material/Table";
 export default function SearchTable(docRef) {
     const [loading, setLoad] = useState(true);
     const [data, setData] = useState([]);
-
+    var stores= ["Amazon", "Best Buy", "Wal-Mart"];
     var arr = [];
     var map = new Map();
     function createData(title, prices, out_of_stock, image, asin, full_link, ship_info) {
@@ -45,6 +45,9 @@ export default function SearchTable(docRef) {
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
                                 Product
                             </TableCell>
+                            <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
+                                Store
+                            </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
                                 MSRP
                             </TableCell>
@@ -54,12 +57,15 @@ export default function SearchTable(docRef) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                            {data.map((i) => (
+                            {data.map((i, index) => (
                             <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                                 <TableCell align="left">
                                     <a href={i.full_link}>
                                         <img src={i.image} alt='pic' width="55" height="auto"/>
                                     </a>
+                                </TableCell>
+                                <TableCell align="left">
+                                    {stores[index]}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     {i.title}
@@ -72,6 +78,8 @@ export default function SearchTable(docRef) {
                                 </TableCell>
                             </TableRow>
                         ))}
+
+
                     </TableBody>
                 </TableMUI>
             </TableContainer>

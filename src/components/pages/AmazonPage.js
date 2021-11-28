@@ -1,4 +1,14 @@
-import {Paper, Grid, Container, TableHead, TableRow, TableCell, TableBody, TableContainer} from '@mui/material';
+import {
+    Paper,
+    Grid,
+    Container,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    TableContainer,
+    Typography
+} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import Button from '@mui/material/Button';
@@ -8,9 +18,11 @@ import Table from "../table";
 import db from "../../firebase/firebase";
 import TableMUI from "@mui/material/Table";
 import {useEffect} from "react";
+import Time from "../utils/time";
 
 
 const AmazonForm = () => {
+    const today = Time();
     const theme = createTheme({
         palette: {
             primary: {
@@ -28,7 +40,10 @@ const AmazonForm = () => {
             <ThemeProvider theme={theme}>
                 <Button>Amazon Store</Button>
                 <Button color="secondary">Active</Button>
+
+                <Typography variant="subtitle1" align="left"> Last Update: { today }</Typography>
             </ThemeProvider>
+
             <Container maxWidth="xl" sx={{mt: 4, mb: 4}}>
                 <Grid>
                     <Grid item xs={12} md={8} lg={9}>
