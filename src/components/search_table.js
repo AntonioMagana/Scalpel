@@ -43,10 +43,10 @@ export default function SearchTable(docRef) {
                         <TableRow>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}/>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
-                                Product
+                                Store
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}}>
-                                Store
+                                Product
                             </TableCell>
                             <TableCell sx={{fontWeight: 'bold', fontSize: 'h6.fontSize'}} align="left">
                                 MSRP

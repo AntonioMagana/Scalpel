@@ -25,18 +25,20 @@ const SearchPage = () => {
                         </Paper>
                     </Grid>
 
+                    {/*
                     <Grid item xs={12} md={4} lg={3}>
                         <Paper sx={{p: 1, display: 'flex', flexDirection: 'column', height: 150,}}>
-                            { News() }
+                            {News()}
                         </Paper>
                     </Grid>
+                    */}
+
 
                     <Grid item xs={12} md={8} lg={9}>
                         <Paper sx={{p: 2, display: 'flex', flexDirection: 'column', height: 600}}>
                             {SearchTable(docRef)}
                         </Paper>
                     </Grid>
-
 
                 </Grid>
             </Container>
